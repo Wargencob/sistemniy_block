@@ -8,7 +8,7 @@ enum SocketType
 };
 
 enum DiskType{
-    Hard,
+    HDD,
     SSD
 };
 

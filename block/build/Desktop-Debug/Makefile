@@ -52,8 +52,18 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../../../src/main.cpp 
-OBJECTS       = main.o
+SOURCES       = ../../../src/main.cpp \
+		../../../src/classes/CPU.cpp \
+		../../../src/classes/Disk.cpp \
+		../../../src/classes/MotherBoard.cpp \
+		../src/PowerUnit.cpp \
+		../src/RAM.cpp 
+OBJECTS       = main.o \
+		CPU.o \
+		Disk.o \
+		MotherBoard.o \
+		PowerUnit.o \
+		RAM.o
 DIST          = /usr/lib/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt6/mkspecs/common/unix.conf \
 		/usr/lib/qt6/mkspecs/common/linux.conf \
@@ -290,6 +300,7 @@ DIST          = /usr/lib/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt6/mkspecs/features/qt_config.prf \
 		/usr/lib/qt6/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/qt6/mkspecs/features/spec_post.prf \
+		../../../src/.qmake.stash \
 		/usr/lib/qt6/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/qt6/mkspecs/features/toolchain.prf \
 		/usr/lib/qt6/mkspecs/features/default_pre.prf \
@@ -312,7 +323,12 @@ DIST          = /usr/lib/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt6/mkspecs/features/exceptions.prf \
 		/usr/lib/qt6/mkspecs/features/yacc.prf \
 		/usr/lib/qt6/mkspecs/features/lex.prf \
-		/home/src/block.pro  ../../../src/main.cpp
+		/home/src/block.pro  ../../../src/main.cpp \
+		../../../src/classes/CPU.cpp \
+		../../../src/classes/Disk.cpp \
+		../../../src/classes/MotherBoard.cpp \
+		../src/PowerUnit.cpp \
+		../src/RAM.cpp
 QMAKE_TARGET  = block
 DESTDIR       = 
 TARGET        = block
@@ -560,6 +576,7 @@ Makefile: ../../../src/block.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/
 		/usr/lib/qt6/mkspecs/features/qt_config.prf \
 		/usr/lib/qt6/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/qt6/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/qt6/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/qt6/mkspecs/features/toolchain.prf \
 		/usr/lib/qt6/mkspecs/features/default_pre.prf \
@@ -821,6 +838,7 @@ Makefile: ../../../src/block.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/
 /usr/lib/qt6/mkspecs/features/qt_config.prf:
 /usr/lib/qt6/mkspecs/linux-g++/qmake.conf:
 /usr/lib/qt6/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/qt6/mkspecs/features/exclusive_builds.prf:
 /usr/lib/qt6/mkspecs/features/toolchain.prf:
 /usr/lib/qt6/mkspecs/features/default_pre.prf:
@@ -860,7 +878,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../../src/main.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../../src/main.cpp ../../../src/classes/CPU.cpp ../../../src/classes/Disk.cpp ../../../src/classes/MotherBoard.cpp ../src/PowerUnit.cpp ../src/RAM.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -916,6 +934,31 @@ main.o: ../../../src/main.cpp ../../../src/include/MotherBoard.h \
 		../../../src/include/PowerUnit.h \
 		../../../src/include/Disk.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../../src/main.cpp
+
+CPU.o: ../../../src/classes/CPU.cpp ../../../src/include/CPU.h \
+		../../../src/include/Component.h \
+		../../../src/include/Data.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CPU.o ../../../src/classes/CPU.cpp
+
+Disk.o: ../../../src/classes/Disk.cpp ../../../src/include/Disk.h \
+		../../../src/include/Component.h \
+		../../../src/include/Data.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Disk.o ../../../src/classes/Disk.cpp
+
+MotherBoard.o: ../../../src/classes/MotherBoard.cpp ../../../src/include/MotherBoard.h \
+		../../../src/include/Component.h \
+		../../../src/include/Data.h \
+		../../../src/include/CPU.h \
+		../../../src/include/RAM.h \
+		../../../src/include/PowerUnit.h \
+		../../../src/include/Disk.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MotherBoard.o ../../../src/classes/MotherBoard.cpp
+
+PowerUnit.o: ../src/PowerUnit.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o PowerUnit.o ../src/PowerUnit.cpp
+
+RAM.o: ../src/RAM.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o RAM.o ../src/RAM.cpp
 
 ####### Install
 

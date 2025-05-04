@@ -3,8 +3,15 @@
 #include <iostream>
 #include <stdexcept>
 
-MotherBoard::MotherBoard(int ramSlotsCount, SocketType socketType, DiskType diskType, CPU* cpu, RAM* ram, PowerUnit* powerUnit, Disk* disk):
-    ramSlotsCount(ramSlotsCount), socketType(socketType), diskType(diskType), cpu(cpu), ram(ram), powerUnit(powerUnit), disk(disk) {
+MotherBoard::MotherBoard(int ramSlotsCount, SocketType socketType, DiskType diskType, CPU* cpu, RAM* ram, PowerUnit* powerUnit, Disk* disk){
+
+    this->ramSlotsCount = ramSlotsCount;
+    this->socketType = socketType;
+    this->diskType = diskType;
+    this->cpu = cpu;
+    this->ram = ram;
+    this->powerUnit = powerUnit;
+    this->disk = disk;
 
     if(cpu->getSocketType() != socketType){
         throw std::runtime_error("CPU socket type incorrect");
