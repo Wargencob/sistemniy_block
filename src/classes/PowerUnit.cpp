@@ -7,4 +7,3 @@ PowerUnit::PowerUnit(std::string name, int voltage):
 void PowerUnit::Info() {
     std::cout << "Power Unit name: " << name << ", voltage:" << voltage << std::endl;
 }
-
