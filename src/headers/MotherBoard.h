@@ -1,4 +1,0 @@
-#ifndef MOTHERBOARD_H
-#define MOTHERBOARD_H
-
-#endif // MOTHERBOARD_H
