@@ -13,10 +13,10 @@ private:
     int ramSlotsCount;
     SocketType socketType;
     DiskType diskType;
-    CPU cpu;
-    RAM ram;
-    PowerUnit powerUnit;
-    Disk disk;
+    CPU* cpu;
+    RAM* ram;
+    PowerUnit* powerUnit;
+    Disk* disk;
 
 public:
     MotherBoard(int ramSlotsCount, SocketType socketType, DiskType diskType, CPU* cpu, RAM* ram, PowerUnit* powerUnit, Disk* disk);

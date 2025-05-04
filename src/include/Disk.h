@@ -13,6 +13,9 @@ private:
 public:
     Disk(std::string name, DiskType diskType, int size);
     ~Disk() { std::cout << "Disk destructed" << std::endl; }
+    DiskType getDiskType(){
+        return diskType;
+    }
     void Info() override;
     void DownSize(int size);
     void UpSize(int size);
