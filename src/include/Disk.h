@@ -8,10 +8,11 @@ class Disk : Component
 {
 private:
     std::string name;
+    DiskType diskType;
     int size;
-    DiskType type;
 public:
-    Disk(std::string name, int fullSize);
+    Disk(std::string name, DiskType diskType, int size);
+    ~Disk() { std::cout << "Disk destructed" << std::endl; }
     void Info() override;
     void DownSize(int size);
     void UpSize(int size);

@@ -9,6 +9,7 @@ private:
     int voltage;
 public:
     PowerUnit(std::string name, int voltage);
+    ~PowerUnit() { std::cout << "PowerUnit destructed" << std::endl; }
     void Info() override;
 };
 

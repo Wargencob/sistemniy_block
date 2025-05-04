@@ -19,7 +19,8 @@ private:
     Disk disk;
 
 public:
-    MotherBoard(int ramSlotsCoutn, SocketType socketType, DiskType diskType, CPU cpu, RAM ram, PowerUnit powerUnity, Disk disk);
+    MotherBoard(int ramSlotsCount, SocketType socketType, DiskType diskType);
+    ~MotherBoard() { std::cout << "MotherBoard destructed" << std::endl; }
     void Info() override;
 };
 

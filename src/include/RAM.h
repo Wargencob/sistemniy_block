@@ -9,6 +9,7 @@ private:
     int size;
 public:
     RAM(std::string name, int size);
+    ~RAM() { std::cout << "RAM destructed" << std::endl; }
     void Info() override;
 };
 

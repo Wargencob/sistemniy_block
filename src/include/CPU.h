@@ -7,14 +7,14 @@
 class CPU : public Component {
 private:
     std::string model;
-    std::string socketType;
+    SocketType socketType;
     int cores;
     int threads;
     float frequency;
-    SocketType type;
 public:
-    CPU(std::string model, int cores, int threads, float frequency);
+    CPU(std::string model, SocketType socketType, int cores, int threads, float frequency);
     void Info() override;
+    ~CPU() { std::cout << "CPU destructed" << std::endl; }
 };
 
 #endif // CPU_H
