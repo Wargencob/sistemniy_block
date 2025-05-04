@@ -13,3 +13,6 @@ CPU::CPU(std::string model, SocketType socketType, int cores, int threads, float
 void CPU::Info(){
     std::cout << "CPU model: " << model << ", cores count: " << cores << ", threads count: " << threads << ", frequency: " << frequency <<std::endl ;
 }
+SocketType CPU::getSocketType(){
+    return socketType;
+}

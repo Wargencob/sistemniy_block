@@ -15,9 +15,7 @@ public:
     CPU(std::string model, SocketType socketType, int cores, int threads, float frequency);
     void Info() override;
     ~CPU() { std::cout << "CPU destructed" << std::endl; }
-    SocketType getSocketType(){
-        return socketType;
-    }
+    SocketType getSocketType();
 };
 
 #endif // CPU_H

@@ -56,8 +56,8 @@ SOURCES       = ../../../src/main.cpp \
 		../../../src/classes/CPU.cpp \
 		../../../src/classes/Disk.cpp \
 		../../../src/classes/MotherBoard.cpp \
-		../src/PowerUnit.cpp \
-		../src/RAM.cpp 
+		../../../src/classes/PowerUnit.cpp \
+		../../../src/classes/RAM.cpp 
 OBJECTS       = main.o \
 		CPU.o \
 		Disk.o \
@@ -323,12 +323,18 @@ DIST          = /usr/lib/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt6/mkspecs/features/exceptions.prf \
 		/usr/lib/qt6/mkspecs/features/yacc.prf \
 		/usr/lib/qt6/mkspecs/features/lex.prf \
-		/home/src/block.pro  ../../../src/main.cpp \
+		/home/src/block.pro ../../../src/include/CPU.h \
+		../../../src/include/Component.h \
+		../../../src/include/Data.h \
+		../../../src/include/Disk.h \
+		../../../src/include/MotherBoard.h \
+		../../../src/include/PowerUnit.h \
+		../../../src/include/RAM.h ../../../src/main.cpp \
 		../../../src/classes/CPU.cpp \
 		../../../src/classes/Disk.cpp \
 		../../../src/classes/MotherBoard.cpp \
-		../src/PowerUnit.cpp \
-		../src/RAM.cpp
+		../../../src/classes/PowerUnit.cpp \
+		../../../src/classes/RAM.cpp
 QMAKE_TARGET  = block
 DESTDIR       = 
 TARGET        = block
@@ -878,7 +884,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../../src/main.cpp ../../../src/classes/CPU.cpp ../../../src/classes/Disk.cpp ../../../src/classes/MotherBoard.cpp ../src/PowerUnit.cpp ../src/RAM.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../../src/include/CPU.h ../../../src/include/Component.h ../../../src/include/Data.h ../../../src/include/Disk.h ../../../src/include/MotherBoard.h ../../../src/include/PowerUnit.h ../../../src/include/RAM.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../../src/main.cpp ../../../src/classes/CPU.cpp ../../../src/classes/Disk.cpp ../../../src/classes/MotherBoard.cpp ../../../src/classes/PowerUnit.cpp ../../../src/classes/RAM.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -954,11 +961,13 @@ MotherBoard.o: ../../../src/classes/MotherBoard.cpp ../../../src/include/MotherB
 		../../../src/include/Disk.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MotherBoard.o ../../../src/classes/MotherBoard.cpp
 
-PowerUnit.o: ../src/PowerUnit.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o PowerUnit.o ../src/PowerUnit.cpp
+PowerUnit.o: ../../../src/classes/PowerUnit.cpp ../../../src/include/PowerUnit.h \
+		../../../src/include/Component.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o PowerUnit.o ../../../src/classes/PowerUnit.cpp
 
-RAM.o: ../src/RAM.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o RAM.o ../src/RAM.cpp
+RAM.o: ../../../src/classes/RAM.cpp ../../../src/include/RAM.h \
+		../../../src/include/Component.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o RAM.o ../../../src/classes/RAM.cpp
 
 ####### Install
 

@@ -13,10 +13,16 @@ int main(int argc, char *argv[])
     Disk* disk = new Disk("default disk", HDD, 100);
     PowerUnit* powerUnit = new PowerUnit("default unit", 200);
 
+    MotherBoard* motherBoard = new MotherBoard(2, IntelSocket, HDD, cpu, ram, powerUnit, disk);
+
     cpu->Info();
     ram->Info();
     disk->Info();
     powerUnit->Info();
+    motherBoard->Info();
+
+    disk->DownSize(100);
+    disk->Info();
 
     return 0;
 }
