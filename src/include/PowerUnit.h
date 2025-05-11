@@ -8,9 +8,14 @@ private:
     std::string name;
     int voltage;
 public:
+    PowerUnit();
     PowerUnit(std::string name, int voltage);
+    PowerUnit(const PowerUnit& powerUnit);
     ~PowerUnit() { std::cout << "PowerUnit destructed" << std::endl; }
-    void Info() override;
+
+    void doJob() override;
+
+    friend std::ostream& operator<<(std::ostream& os, const PowerUnit* powerUnit);
 };
 
 #endif // POWERUNIT_H

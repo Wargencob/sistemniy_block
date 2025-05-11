@@ -10,13 +10,20 @@ private:
     std::string name;
     DiskType diskType;
     float size;
+    float maxSize;
 public:
-    Disk(std::string name, DiskType diskType, float size);
+    Disk();
+    Disk(std::string name, DiskType diskType, float size, float maxSize);
+    Disk(const Disk& disk);
     ~Disk() { std::cout << "Disk destructed" << std::endl; }
     DiskType getDiskType();
-    void Info() override;
+
+    void doJob() override;
     void DownSize(int size);
     void UpSize(int size);
+
+    friend std::ostream& operator<<(std::ostream& os, const Disk* disk);
+
 };
 
 #endif // CDISK_H

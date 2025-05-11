@@ -8,9 +8,14 @@ private:
     std::string name;
     int size;
 public:
+    RAM();
     RAM(std::string name, int size);
+    RAM(const RAM& ram);
     ~RAM() { std::cout << "RAM destructed" << std::endl; }
-    void Info() override;
+
+    void doJob() override;
+
+    friend std::ostream& operator<<(std::ostream& os, const RAM* ram);
 };
 
 #endif // RAM_H

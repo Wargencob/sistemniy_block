@@ -6,23 +6,33 @@
 #include "include/Data.h"
 
 
-int main(int argc, char *argv[])
+void Job(Component* component)
+{
+    component->doJob();
+}
+
+int main()
 {
     CPU* cpu = new CPU("intel core i5", IntelSocket, 5, 10, 5000);
-    RAM* ram = new RAM("default ram", 2048);
-    Disk* disk = new Disk("default disk", HDD, 100);
-    PowerUnit* powerUnit = new PowerUnit("default unit", 200);
+    RAM* ram = new RAM("Стандартная оперативная память", 2048);
+    Disk* disk = new Disk("Стандартный диск", HDD, 200, 0);
+    PowerUnit* powerUnit = new PowerUnit("Стандартный БП", 200);
+    MotherBoard* motherBoard = new MotherBoard("Стандартная материнская плата", IntelSocket, HDD, cpu, ram, powerUnit, disk);
 
-    MotherBoard* motherBoard = new MotherBoard(2, IntelSocket, HDD, cpu, ram, powerUnit, disk);
+    Disk* disk2 = new Disk(*disk);
 
-    cpu->Info();
-    ram->Info();
-    disk->Info();
-    powerUnit->Info();
-    motherBoard->Info();
+    Job(cpu);
 
-    disk->DownSize(100);
-    disk->Info();
+    delete(ram);
+
+    std::cout << disk << std::endl;
+    std::cout << disk2 << std::endl;
+
+    disk2->UpSize(100);
+
+    std::cout << disk << std::endl;
+    std::cout << disk2 << std::endl;
 
     return 0;
 }
+

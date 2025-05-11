@@ -1,4 +1,5 @@
 #include "Component.h"
+#include <vector>
 #include "Data.h"
 #include "CPU.h"
 #include "RAM.h"
@@ -10,7 +11,7 @@
 
 class MotherBoard: public Component{
 private:
-    int ramSlotsCount;
+    std::string name;
     SocketType socketType;
     DiskType diskType;
     CPU* cpu;
@@ -19,9 +20,14 @@ private:
     Disk* disk;
 
 public:
-    MotherBoard(int ramSlotsCount, SocketType socketType, DiskType diskType, CPU* cpu, RAM* ram, PowerUnit* powerUnit, Disk* disk);
+    MotherBoard();
+    MotherBoard(std::string name, SocketType socketType, DiskType diskType, CPU* cpu, RAM* ram, PowerUnit* powerUnit, Disk* disk);
+    MotherBoard(const MotherBoard& motherBoard);
     ~MotherBoard() { std::cout << "MotherBoard destructed" << std::endl; }
-    void Info() override;
+
+    void doJob() override;
+
+    friend std::ostream& operator<<(std::ostream& os, const MotherBoard* motherBoard);
 };
 
 #endif // MOTHERBOARD_H

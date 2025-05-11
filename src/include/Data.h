@@ -3,13 +3,13 @@
 
 enum SocketType
 {
-    IntelSocket,
-    AmdSocket
+    IntelSocket = 1,
+    AmdSocket = 2
 };
 
 enum DiskType{
-    HDD,
-    SSD
+    HDD = 1,
+    SSD = 2
 };
 
 #endif // DATA_H

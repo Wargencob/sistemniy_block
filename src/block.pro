@@ -21,8 +21,7 @@ HEADERS += \
         ../src/include/Disk.h \
         ../src/include/MotherBoard.h \
         ../src/include/PowerUnit.h \
-        ../src/include/RAM.h \
-        include/Program.h
+        ../src/include/RAM.h
 
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
